@@ -19,12 +19,9 @@
 					}
 				],
 				"url": {
-					"raw": "https://library-api.postmanlabs.com/books",
-					"protocol": "https",
+					"raw": "{{baseUrl}}/books",
 					"host": [
-						"library-api",
-						"postmanlabs",
-						"com"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"books"
@@ -45,12 +42,9 @@
 					}
 				],
 				"url": {
-					"raw": "https://library-api.postmanlabs.com/books?genre=fiction",
-					"protocol": "https",
+					"raw": "{{baseUrl}}/books?genre=fiction&checkedOut=false",
 					"host": [
-						"library-api",
-						"postmanlabs",
-						"com"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"books"
@@ -59,6 +53,10 @@
 						{
 							"key": "genre",
 							"value": "fiction"
+						},
+						{
+							"key": "checkedOut",
+							"value": "false"
 						}
 					]
 				}
@@ -94,6 +92,26 @@
 		},
 		{
 			"name": "add a book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Save created book id into collection variable bookId\r",
+							"const json = pm.response.json();\r",
+							"\r",
+							"// Some versions return { id: \"...\" }, others return { book: { id: \"...\" } }\r",
+							"const id = json.id || (json.book && json.book.id);\r",
+							"\r",
+							"pm.collectionVariables.set(\"bookId\", id);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -113,12 +131,9 @@
 					}
 				},
 				"url": {
-					"raw": "https://library-api.postmanlabs.com/books",
-					"protocol": "https",
+					"raw": "{{baseUrl}}/books",
 					"host": [
-						"library-api",
-						"postmanlabs",
-						"com"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"books"
@@ -148,16 +163,19 @@
 					}
 				},
 				"url": {
-					"raw": "https://library-api.postmanlabs.com/books/{{bookId}}",
-					"protocol": "https",
+					"raw": "{{baseUrl}}/books/:id",
 					"host": [
-						"library-api",
-						"postmanlabs",
-						"com"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"books",
-						"{{bookId}}"
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "{{bookId}}"
+						}
 					]
 				}
 			},
@@ -223,6 +241,21 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "skillcheck",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "student-expert",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [
 					{
@@ -241,14 +274,9 @@
 					}
 				},
 				"url": {
-					"raw": "https://postman-echo.com/post?movieName=Dream%20Girl%202",
-					"protocol": "https",
+					"raw": "{{skillcheckBaseUrl}}?movieName=Dream%20Girl%202",
 					"host": [
-						"postman-echo",
-						"com"
-					],
-					"path": [
-						"post"
+						"{{skillcheckBaseUrl}}"
 					],
 					"query": [
 						{
@@ -291,7 +319,7 @@
 			"value": ""
 		},
 		{
-			"key": "bookId",
+			"key": "skillcheckBaseUrl",
 			"value": ""
 		},
 		{
