@@ -11,7 +11,25 @@
 			"name": "get books",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [
+					{
+						"key": "api-key",
+						"value": " postmanrulz",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://library-api.postmanlabs.com/books",
+					"protocol": "https",
+					"host": [
+						"library-api",
+						"postmanlabs",
+						"com"
+					],
+					"path": [
+						"books"
+					]
+				}
 			},
 			"response": []
 		},
@@ -19,7 +37,31 @@
 			"name": "get fiction books",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [
+					{
+						"key": "api-key",
+						"value": " postmanrulz",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://library-api.postmanlabs.com/books?genre=fiction",
+					"protocol": "https",
+					"host": [
+						"library-api",
+						"postmanlabs",
+						"com"
+					],
+					"path": [
+						"books"
+					],
+					"query": [
+						{
+							"key": "genre",
+							"value": "fiction"
+						}
+					]
+				}
 			},
 			"response": []
 		},
@@ -27,31 +69,124 @@
 			"name": "get book by id",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [
+					{
+						"key": "api-key",
+						"value": " postmanrulz",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://library-api.postmanlabs.com/books/{{bookId}}",
+					"protocol": "https",
+					"host": [
+						"library-api",
+						"postmanlabs",
+						"com"
+					],
+					"path": [
+						"books",
+						"{{bookId}}"
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "add a book",
 			"request": {
-				"method": "GET",
-				"header": []
+				"method": "POST",
+				"header": [
+					{
+						"key": "api-key",
+						"value": " postmanrulz",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Postman Test Book\",\r\n  \"author\": \"Iyed\",\r\n  \"genre\": \"fiction\",\r\n  \"yearPublished\": 2022\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://library-api.postmanlabs.com/books",
+					"protocol": "https",
+					"host": [
+						"library-api",
+						"postmanlabs",
+						"com"
+					],
+					"path": [
+						"books"
+					]
+				}
 			},
 			"response": []
 		},
 		{
-			"name": "Check out a book",
+			"name": "checkout a book",
 			"request": {
-				"method": "GET",
-				"header": []
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "api-key",
+						"value": " postmanrulz",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"checkedOut\": true\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://library-api.postmanlabs.com/books/{{bookId}}",
+					"protocol": "https",
+					"host": [
+						"library-api",
+						"postmanlabs",
+						"com"
+					],
+					"path": [
+						"books",
+						"{{bookId}}"
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "delete a book",
 			"request": {
-				"method": "GET",
-				"header": []
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "api-key",
+						"value": " postmanrulz",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://library-api.postmanlabs.com/books/{{bookId}}",
+					"protocol": "https",
+					"host": [
+						"library-api",
+						"postmanlabs",
+						"com"
+					],
+					"path": [
+						"books",
+						"{{bookId}}"
+					]
+				}
 			},
 			"response": []
 		},
