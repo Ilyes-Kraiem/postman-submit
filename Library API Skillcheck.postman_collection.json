@@ -187,6 +187,21 @@
 		{
 			"name": "delete a book",
 			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "postmanrulz",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "api-key",
+							"type": "string"
+						}
+					]
+				},
 				"method": "DELETE",
 				"header": [
 					{
@@ -196,16 +211,19 @@
 					}
 				],
 				"url": {
-					"raw": "https://library-api.postmanlabs.com/books/{{bookId}}",
-					"protocol": "https",
+					"raw": "{{baseUrl}}/books/:id",
 					"host": [
-						"library-api",
-						"postmanlabs",
-						"com"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"books",
-						"{{bookId}}"
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "{{bookId}}"
+						}
 					]
 				}
 			},
